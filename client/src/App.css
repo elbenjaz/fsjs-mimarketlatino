@@ -1,0 +1,347 @@
+@charset "UTF-8";
+
+body {
+  cursor: default;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size:1.5rem;
+  padding-top:0.75rem;
+}
+
+/* General */
+.box-shadow {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.12);
+}
+
+.bg-primary {
+    background-color: var(--color-purple) !important;
+}
+
+.bg-secondary {
+    background-color: var(--color-orange) !important;
+}
+
+.btn-primary {
+    background-color: var(--color-purple) !important;
+    border-color: var(--color-purple) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-purplemedium) !important;
+    border-color: var(--color-purplemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    background-color: var(--color-orange) !important;
+    border-color: var(--color-orange) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-orangemedium) !important;
+    border-color: var(--color-orangemedium) !important;
+    transition: ease 1s;
+    font-weight: 600;
+}
+
+.btn-remove {
+    background-color: var(--color-burgundy) !important;
+    border-color: var(--color-burgundy) !important;
+}
+
+.btn-remove:hover {
+    background-color: var(--color-burgundydark) !important;
+    border-color: var(--color-burgundydark) !important;
+}
+
+.btn-add {
+    background-color: var(--color-greenmedium) !important;
+    border-color: var(--color-greenmedium) !important;
+}
+
+.btn-add:hover {
+    background-color: var(--color-greendark) !important;
+    border-color: var(--color-greendark) !important;
+}
+
+.text-primary {
+    color: var(--color-purple) !important;
+}
+
+.text-secondary {
+    color: var(--color-orange) !important;
+}
+
+.border-secondary {
+    border-color: var(--color-orange) !important;
+}
+
+.form-control {
+    height: 3rem !important;
+    border-color: var(--color-graylight) !important;
+    font-size: 18px !important;
+}
+
+/* Home */
+header {
+  height: 26rem;
+  overflow: hidden;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.carousel-img {
+width: 100vw;
+height: 500px;
+object-fit: cover;
+}
+
+.carousel-caption {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 100%;
+}
+
+/* Home categories */
+.home_category_1 {
+  background-color: var(--color-purplemedium);
+}
+.home_category_2 {
+  background-color: var(--color-bluemedium);
+}
+.home_category_3 {
+  background-color: var(--color-greenmedium);
+}
+.home_category_4 {
+  background-color: var(--color-burgundy);
+}
+
+.home_category_1:hover,
+.home_category_2:hover,
+.home_category_3:hover,
+.home_category_4:hover
+{
+transform: scale(1.05);
+transition: ease 1s;
+}
+
+.category_icons {
+  width: 150px;
+}
+
+/* Products */
+.product-title {
+  height: 50px;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.Products .product-card {
+    border-radius: 20px;
+    background-color: var(--color-white);
+    padding: 20px;
+    border: 2px var(--color-black) solid;
+    margin: 10px;
+    width: 320px;
+    height: 420px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.Products .product-card img {
+    max-width: 180px;
+    height: auto;
+    border-radius: 4px;
+}
+
+.Products .product-card .product-favorite {
+    position: absolute;
+    right: 0;
+    margin: 0px 20px;
+}
+
+/* Category */
+.Category[data-category]:before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    background-size: cover;
+}
+
+.Category[data-category="Bienestar"] {
+    background-color: var(--color-bluemedium) !important;
+}
+
+.Category[data-category="Bienestar"]:before {
+    background-image: url("/assets/img/category_icons/category_icons-02.svg");
+}
+
+.Category[data-category="Manualidades"] {
+    background-color: var(--color-burgundy) !important;
+}
+
+.Category[data-category="Manualidades"]:before {
+    background-image: url("/assets/img/category_icons/category_icons-04.svg");
+}
+
+.Category[data-category="Música"] {
+    background-color: var(--color-purplemedium) !important;
+}
+
+.Category[data-category="Música"]:before {
+    background-image: url("/assets/img/category_icons/category_icons-01.svg");
+}
+
+.Category[data-category="Plantas"] {
+    background-color: var(--color-greenmedium) !important;
+}
+
+.Category[data-category="Plantas"]:before {
+    background-image: url("/assets/img/category_icons/category_icons-03.svg");
+}
+
+/* Feedback */
+.Toastify .Toastify__toast:has(> .Feedback-success) {
+    color: var(--bs-success-text-emphasis);
+    background: var(--bs-success-bg-subtle);
+    border: 1px var(--bs-success-border-subtle) solid;
+}
+
+.Toastify .Toastify__toast:has(> .Feedback-error) {
+    color: var(--bs-danger-text-emphasis);
+    background: var(--bs-danger-bg-subtle);
+    border: 1px var(--bs-danger-border-subtle) solid;
+}
+
+/* Navigation */
+.active,
+.inactive {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.inactive a {
+    color: var(--color-gray);
+}
+
+.active {
+    color: var(--color-purple) !important;
+    font-weight: 600;
+}
+
+.inactive {
+    color: var(--color-white);
+}
+
+.nav-dropdown-item {
+  color:var(--color-white);
+}
+.nav-dropdown-item:hover, 
+.nav-dropdown-item:active {
+  background-color: var(--color-lightorange);
+  color:var(--color-white);
+}
+
+.nav-link,
+.nav-link:hover {
+  color: var(--color-white);
+  font-size: 20px;
+ }
+
+.nav-dropdown-link {
+  color: var(--color-white) !important;
+  font-weight:normal;
+  font-size:1rem;
+}
+
+.dropdown-menu {
+  background-color: var(--color-orange) !important;
+}
+/* Breadcrumb */
+.breadcrumb-active,
+.breadcrumb-inactive {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.breadcrumb-inactive a,
+.breadcrumb-active a
+ {
+    color: var(--color-gray);
+}
+
+.breadcrumb-active {
+    font-weight: 700;
+}
+
+/* Footer */
+.logoFooter {
+    width: 100px;
+}
+
+.copyright {
+    font-weight: 600;
+}
+
+footer {
+    overflow-x: hidden;
+}
+
+footer a {
+    text-align: start;
+    color: white;
+}
+
+.bi-github {
+    font-size: 20px;
+}
+
+/* FAQ */
+.faq {
+    line-height: 2;
+    font-size: 20px;
+}
+
+/* Reinsurances */
+.reinsurance_icons {
+    width: 100px;
+}
+
+.reinsurance:hover {
+    transform: scale(1.05);
+    transition: ease 1s;
+}
+
+.reinsurance_texts {
+    font-size: 1.25rem;
+}
+
+/* Swiper */
+.swiper-button-prev,
+.swiper-button-next {
+    color: var(--color-purple) !important;
+}
+
+@media screen and (min-width: 768px) {
+    .carousel-caption {
+      top: 55%;
+      left: 30%;
+    }
+    .img-responsive {
+      width:400px;
+      height:400px;
+    }
+}

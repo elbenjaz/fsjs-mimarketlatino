@@ -1,0 +1,22 @@
+<svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 283.46 283.46" xml:space="preserve">
+	<style type="text/css">
+		.st0{fill:none;stroke:#8E72B3;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	</style>
+	<g id="logoActive">
+		<line class="st0" x1="27.37" y1="250.08" x2="256.09" y2="250.08"/>
+		<line class="st0" x1="141.73" y1="250.08" x2="141.73" y2="26.58"/>
+		<line class="st0" x1="50.91" y1="250.08" x2="50.91" y2="134.13"/>
+		<line class="st0" x1="233.48" y1="250.08" x2="233.48" y2="134.13"/>
+		<polygon class="st0" points="56.07,26.58 27.37,88.03 256.09,88.03 226.81,26.58"/>
+		<path class="st0" d="M27.37,88.03v24.42c0,0,4.02,20.65,23.53,20.8c0,0,12.27,1.01,17.63-8.84c0,0,5.65,9.19,17.97,8.87
+			s18.55-8.44,18.55-8.44s7.83,9.06,18.41,8.44s18.26-8.73,18.26-8.73s5.07,8.4,17.83,8.76s18.26-8.91,18.26-8.91s5.65,9,18.41,8.92
+			c12.75-0.08,17.39-8.63,17.39-8.63s6.09,9,19.86,8.63s20.87-11.82,22.61-20.88V88.03"/>
+		<polyline class="st0" points="68.54,124.41 68.54,88.03 87.67,26.58"/>
+		<polyline class="st0" points="105.06,124.85 105.06,88.03 115.21,26.58"/>
+		<polyline class="st0" points="177.82,124.41 177.82,88.03 167.68,26.58"/>
+		<polyline class="st0" points="194.06,26.58 213.62,88.03 213.62,124.7"/>
+		<line class="st0" x1="159.27" y1="168.04" x2="159.27" y2="195.58"/>
+		<line class="st0" x1="123.61" y1="168.04" x2="123.61" y2="195.58"/>
+	</g>
+</svg>

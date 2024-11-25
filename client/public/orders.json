@@ -1,0 +1,50 @@
+[
+  {
+    "id_order": 1,
+    "id_user": 1,
+    "id_product": 2,
+    "product_quantity": 2,
+    "total_price": 40000,
+    "purchase_date": "2024-01-10 14:30:00"
+  },
+  {
+    "id_order": 2,
+    "id_user": 2,
+    "id_product": 1,
+    "product_quantity": 1,
+    "total_price": 10000,
+    "purchase_date": "2024-01-12 10:15:00"
+  },
+  {
+    "id_order": 3,
+    "id_user": 1,
+    "id_product": 2,
+    "product_quantity": 3,
+    "total_price": 60000,
+    "purchase_date": "2024-02-05 16:45:00"
+  },
+  {
+    "id_order": 4,
+    "id_user": 3,
+    "id_product": 3,
+    "product_quantity": 1,
+    "total_price": 30000,
+    "purchase_date": "2024-02-20 09:20:00"
+  },
+  {
+    "id_order": 5,
+    "id_user": 2,
+    "id_product": 4,
+    "product_quantity": 2,
+    "total_price": 80000,
+    "purchase_date": "2024-03-15 11:00:00"
+  },
+  {
+    "id_order": 6,
+    "id_user": 2,
+    "id_product": 5,
+    "product_quantity": 4,
+    "total_price": 200000,
+    "purchase_date": "2024-03-25 17:30:00"
+  }
+]

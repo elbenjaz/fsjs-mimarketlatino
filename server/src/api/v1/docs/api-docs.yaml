@@ -1,0 +1,714 @@
+tags:
+  - name: Login
+    description: User authentication
+  - name: Users
+    description: Users API management
+  - name: Products
+    description: Products API management
+  - name: Orders
+    description: Orders API management
+  - name: Favorites
+    description: Favorites API management
+securityDefinitions:
+  BearerAuth:
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+paths:
+  /users:
+    post:
+      summary: User creation
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreation'
+            example:
+              firstname: John
+              lastname: Doe
+              email: john.doe@test.com
+              password: password
+      responses:
+        '201':
+          description: Success. The request has led to the creation of a new user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                firstname: John
+                lastname: Doe
+                email: john.doe@test.com
+                phone: 569123456789
+                address: Calle Principal 123
+                avatar_url: http://example.com/avatar.jpg
+                date_add: "2023-01-01T00:00:00Z"
+                date_upd: "2023-01-02T00:00:00Z"
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '409':
+          description: Conflict. The request conflicts with the current state of the server, such as duplicate entries.
+  /users/{id_user}:
+    get:
+      security:
+        - BearerAuth: []
+      summary: Get user information
+      tags: [Users]
+      parameters:
+        - name: id_user
+          in: path
+          description: User id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                firstname: John
+                lastname: Doe
+                email: john.doe@test.com
+                phone: 569123456789
+                address: Calle Principal 123
+                avatar_url: http://example.com/avatar.jpg
+                date_add: "2023-01-01T00:00:00Z"
+                date_upd: "2023-01-02T00:00:00Z"
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '404':
+          description: Not Found. The requested user could not be found in the system.
+    put:
+      security:
+        - BearerAuth: []
+      summary: Update user information.
+      description: Updates a user's information.
+      tags: [Users]
+      parameters:
+        - name: id_user
+          in: path
+          description: User id to be updated
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserEdition'
+            example:
+              firstname: John
+              lastname: Doe
+              password: newSecurePassword123
+              phone: 569123456789
+              address: Calle Principal 567
+              avatar_url: http://example.com/new-avatar.jpg
+      responses:
+        '200':
+          description: Success. The request has successfully edited the user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+              example:
+                firstname: John
+                lastname: Doe
+                phone: 569123456789
+                address: Calle Principal 567
+                avatar_url: http://example.com/new-avatar.jpg
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '401':
+          description: Unauthorized. The request lacks valid authentication credentials for the target resource.
+        '404':
+          description: Not Found. The requested user could not be found in the system.
+  /products:
+    post:
+      security:
+        - BearerAuth: []
+      summary: Product creation
+      tags: [Products]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'
+            example:
+              name: Example Product
+              price: 10000
+              description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              image_url: http://example.com/product.jpg
+              category: Manualidades
+      responses:
+        '201':
+          description: Success. The request has led to the creation of a new product.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '401':
+          description: Unauthorized. The request doesn't achieve the security.
+    get:
+      summary: Get all products information
+      description: Retrieves all products information. Filtering and sorting should be handled on the frontend, as this endpoint returns all products without support for backend filtering or sorting parameters.
+      tags: [Products]
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the product information.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Products'
+        '404':
+          description: Not Found. The server can't find the requested resource like specified filter criteria or parameters match no products.
+        '500':
+          description: Internal Server Error. The server encountered an unexpected condition that prevented it from fulfilling the request.
+  /products/{id}:
+    get:
+      summary: Get specific product information
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          description: Product id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the product information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '404':
+          description: Not Found. The requested product could not be found in the system.
+    delete:
+      security:
+        - BearerAuth: []
+      summary: Delete product.
+      tags: [Products]
+      parameters:
+        - name: id
+          in: path
+          description: Product id to be deleted
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Success. The request has successfully deleted the product information.
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax like id invalid.
+        '401':
+          description: Unauthorized. The request lacks valid authentication credentials for the target resource.
+        '404':
+          description: Not Found. The requested product could not be found in the system.
+    put:
+      summary: Product update not allowed
+      description: For security reasons and to prevent misuse, updating products via the PUT method is not allowed in this API.
+      tags: 
+        - Products
+      responses:
+        '405':
+          description: Method Not Allowed. Updating products via the PUT method is not allowed.
+  /orders:
+    post:
+      security:
+        - BearerAuth: []
+      summary: Order creation
+      description: This endpoint facilitates the creation of new orders. The id_order is generated automatically and id_user is determined from the user's authentication token, for these reasons aren't included in this schema.
+      tags: [Orders]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreation'
+            example:
+              total_price: 10000
+              products:
+                - id_product: 1
+                  unit_price: 5000
+                  product_quantity: 1
+                - id_product: 2
+                  unit_price: 2500
+                  product_quantity: 2
+      responses:
+        '201':
+          description: Success. The request has led to the creation of a new order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+              example:
+                total_price: 10000
+                products:
+                  - id_product: 1
+                    unit_price: 5000
+                    product_quantity: 1
+                  - id_product: 2
+                    unit_price: 2500
+                    product_quantity: 2
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '409':
+          description: Conflict. The request conflicts with the current state of the server, such as duplicate entries.
+  /orders/purchases:
+    get:
+      security:
+        - BearerAuth: []
+      summary: Get orders for the authenticated user
+      description: Load all orders placed by the authenticated user. The user is identified through the authentication token.
+      tags: [Orders]
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the orders for the authenticated user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderListResponse'
+              example:
+                - id_order: 1
+                  total_price: 15000
+                  purchase_date: "2024-03-17T12:00:00Z"
+                  products:
+                    - id_product: 1
+                      name: "High-Quality Headphones"
+                      image_url: "http://example.com/product/headphones.jpg"
+                      unit_price: 7500
+                      product_quantity: 2
+                - id_order: 2
+                  total_price: 30000
+                  purchase_date: "2024-03-18T15:30:00Z"
+                  products:
+                    - id_product: 1
+                      name: "High-Quality Headphones"
+                      image_url: "http://example.com/product/headphones.jpg"
+                      unit_price: 7500
+                      product_quantity: 2
+                    - id_product: 2
+                      name: "Ergonomic Keyboard"
+                      image_url: "http://example.com/product/keyboard.jpg"
+                      unit_price: 15000
+                      product_quantity: 1
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '404':
+          description: Not Found. No orders were found for the user.
+  /orders/sells:
+    get:
+      security:
+      - BearerAuth: []
+      summary: Get orders for products sold by the authenticated user
+      description: Load all orders containing products that were created by the authenticated user. The user is identified through the authentication token.
+      tags: [Orders]
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the orders for the authenticated user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderListResponse'
+              example:
+                - id_order: 3
+                  purchase_date: "2024-03-19T09:00:00Z"
+                  products:
+                    - id_product: 3
+                      name: "Wireless Mouse"
+                      image_url: "http://example.com/product/mouse.jpg"
+                      unit_price: 10000
+                      product_quantity: 2
+                - id_order: 4
+                  purchase_date: "2024-03-20T11:00:00Z"
+                  products:
+                    - id_product: 4
+                      name: "Portable Charger"
+                      image_url: "http://example.com/product/charger.jpg"
+                      unit_price: 4000
+                      product_quantity: 2
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '404':
+          description: Not Found. No orders were found where user create the product.
+  /login:
+    post:
+      summary: User authentication
+      tags: [Login]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/Login'
+            example:
+              email: john.doe@test.com
+              password: password
+      responses:
+        '200':
+          description: Success. The request has led to the authentication of the user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT token provided for user authentication.
+                    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '401':
+          description: Unauthorized. The email or password is incorrect.
+  /favorites:
+    post:
+      security:
+        - BearerAuth: []
+      summary: Add a product to the user's favorites
+      description: Adds a specified product to the authenticated user's favorites. The user is identified through the authentication token.
+      tags: [Favorites]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_product:
+                  type: integer
+                  description: The ID of the product to add to favorites.
+              required:
+                - id_product
+            example:
+              id_product: 1
+      responses:
+        '201':
+          description: Success. The product has been added to the user's favorites.
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '409':
+          description: Conflict. The product is already in the user's favorites.
+    get:
+      security:
+        - BearerAuth: []
+      summary: Get favorites for the authenticated user
+      description: Load all favorites placed by the authenticated user. The user is identified through the authentication token.
+      tags: [Favorites]
+      responses:
+        '200':
+          description: Success. The request has successfully loaded the user's favorites.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FavoritesListResponse'
+              example:
+                - id_user: 1
+                  id_product: 1
+                - id_user: 1
+                  id_product: 3
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax.
+        '404':
+          description: Not Found. No favorites were found for the user.
+  /favorites/{id}:
+    delete:
+      security:
+        - BearerAuth: []
+      summary: Delete a favorite for the authenticated user
+      description: Deletes a specific product from the authenticated user's favorites. The user is identified through the authentication token.
+      tags: [Favorites]
+      parameters:
+        - name: id
+          in: path
+          description: The ID of the product to delete from favorites.
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Success. The product has been removed from the user's favorites.
+        '400':
+          description: Bad Request. The request was invalid or can't be served due to bad syntax, such as an invalid product ID.
+        '404':
+          description: Not Found. The specified product is not in the user's favorites.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    UserCreation:
+      type: object
+      required:
+        - firstname
+        - lastname
+        - email
+        - password
+      properties:
+        firstname:
+          type: string
+          description: User firstname
+        lastname:
+          type: string
+          description: User lastname
+        email:
+          type: string
+          format: email
+          description: User email
+        password:
+          type: string
+          minLength: 8
+          description: User password, which must be at least 8 characters long and will be securely hashed before storage.
+      example:
+        firstname: John
+        lastname: Doe
+        email: john.doe@test.com
+        password: password
+    UserResponse:
+      type: object
+      description: Represents the user information that is safe to be exposed publicly. This schema is used for responses where user details are fetched without including sensitive data like passwords.
+      properties:
+        firstname:
+          type: string
+          description: User firstname
+        lastname:
+          type: string
+          description: User lastname
+        email:
+          type: string
+          format: email
+          description: User email
+        phone:
+          type: string
+          description: User phone
+        address:
+          type: string
+          description: User address
+        avatar_url:
+          type: string
+          description: User avatar
+        id_user_google:
+          type: string
+          description: ID provided by Google for sign-in
+        date_add:
+          type: string
+          format: date-time
+          description: User creation date
+        date_upd:
+          type: string
+          format: date-time
+          description: Last update date of the user information
+      example:
+        firstname: John
+        lastname: Doe
+        email: john.doe@test.com
+        phone: 569123456789
+        address: Calle Principal 123
+        avatar_url: http://example.com/avatar.jpg
+        date_add: "2023-01-01T00:00:00Z"
+        date_upd: "2023-01-02T00:00:00Z"
+    UserEdition:
+      type: object
+      description: Represents the user information that can be editable.
+      properties:
+        firstname:
+          type: string
+          minLength: 1
+          description: User firstname. This field is required and can't be blank on an update.
+        lastname:
+          type: string
+          minLength: 1
+          description: User lastname. This field is required and can't be blank on an update.
+        password:
+          type: string
+          minLength: 8
+          description: User password, which must be at least 8 characters long and will be securely hashed before storage. Optional for updates.
+        address:
+          type: string
+          description: User address. Optional for updates.
+        phone:
+          type: string
+          description: User phone. Optional for updates.
+        avatar_url:
+          type: string
+          description: User avatar. Optional for updates.
+      example:
+        firstname: John
+        lastname: Doe
+        password: newSecurePassword123
+        phone: 569123456789
+        address: Calle Principal 567
+        avatar_url: http://example.com/new-avatar.jpg
+    Products:
+      description: This schema represents products. For security reasons and to prevent misuse, updating products via PUT methods is not allowed.
+      type: object
+      required:
+        - name
+        - price
+        - description
+        - image_url
+        - category
+      properties:
+        name:
+          type: string
+          description: Product name
+        price:
+          type: integer
+          description: Product price in Chilean Pesos (CLP) without decimal values
+        description:
+          type: string
+          description: Product description
+        image_url:
+          type: string
+          description: Product image URL
+        category:
+          type: string
+          description: Product category
+        enum:
+          - Plantas
+          - Manualidades
+          - Música
+          - Bienestar
+      example:
+        name: Example Product
+        price: 10000
+        description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        image_url: http://example.com/product.jpg
+        category: Manualidades
+    OrderCreation:
+      type: object
+      required:
+        - total_price
+        - products
+      properties:
+        total_price:
+          type: integer
+          description: Total amount paid in Chilean Pesos (CLP) without decimal values
+        products:
+          type: array
+          description: "List of products in the order."
+          items:
+            type: object
+            required:
+              - id_product
+              - unit_price
+              - product_quantity
+            properties:
+              id_product:
+                type: integer
+                description: "Product identifier."
+              unit_price:
+                type: integer
+                description: "Price per unit of the product."
+              product_quantity:
+                type: integer
+                description: "Quantity of the product."
+      example:
+          total_price: 10000
+          products:
+            - id_product: 1
+              unit_price: 5000
+              product_quantity: 1
+            - id_product: 2
+              unit_price: 2500
+              product_quantity: 2
+    OrderResponse:
+      type: object
+      required:
+        - id_order
+        - id_user
+        - total_price
+        - purchase_date
+        - id_product
+        - unit_price
+        - product_quantity
+      properties:
+        id_order:
+          type: integer
+          description: "Identifier of the order."
+        id_user:
+          type: integer
+          description: "Identifier of the user who made the order."
+        total_price:
+          type: integer
+          description: "Total price of the order."
+        purchase_date:
+          type: string
+          format: date-time
+          description: "The date and time when the order was made."
+        products:
+          type: array
+          description: "Details of products in the order."
+          items:
+            type: object
+            properties:
+              id_product:
+                type: integer
+                description: "Product identifier."
+              name:
+                type: string
+                description: "Name of the product. Only included in the sells endpoint response."
+              image_url:
+                type: string
+                description: "URL of the product image. Only included in the sells endpoint response."
+              unit_price:
+                type: integer
+                description: "Price per unit of the product."
+              product_quantity:
+                type: integer
+                description: "Quantity of the product."
+    OrderListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/OrderResponse'
+    Login:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          description: User email
+        password:
+          type: string
+          minLength: 8
+          description: User password, which must be at least 8 characters long and will be securely hashed before storage.
+      example:
+        email: john.doe@test.com
+        password: password
+    Favorites:
+      type: object
+      required:
+        - id_product
+      properties:
+        id_product:
+          type: integer
+          description: Product ID marked as favorite
+      example:
+        id_product: 1
+    FavoritesListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/Favorites'

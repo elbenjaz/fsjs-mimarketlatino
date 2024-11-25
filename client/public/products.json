@@ -1,0 +1,52 @@
+[
+    {
+        "id_product"  : 1,
+        "id_user"     : 1,
+        "name"        : "Plantita Kawaii",
+        "price"       : 10000,
+        "description" : "Las plantas son como el equipo de limpieza de la naturaleza: ¡absorben dióxido de carbono, producen oxígeno y agregan un toque verde elegante a cualquier habitación! Además, son los compañeros de cuarto más tranquilos que puedas tener. ¡No necesitan más que un poco de agua y luz para mantenerse felices!",
+        "image_url"   : "https://data.pokecommunity.com/avatars/o/738/738733.jpg?1700881497",
+        "category" : "plantas",
+        "date_add"    : "2024-01-01 00:00:00"
+    },
+    {
+        "id_product"  : 2,
+        "id_user"     : 2,
+        "name"        : "Best Música ever",
+        "price"       : 20000,
+        "description" : "¡Prepárate para una montaña rusa de ritmos pegajosos y coreografías increíbles! La música K-pop es como una fiesta en tu teléfono: canciones irresistibles que te hacen bailar sin importar dónde estés. ¡Solo escúchala una vez y prepárate para tener melodías en tu cabeza durante todo el día!",
+        "image_url"   : "https://img.freepik.com/premium-photo/pokemon-pikachu-listening-music-with-headphones-generative-ai_974575-44074.jpg",
+        "category" : "musica",
+        "date_add"    : "2024-01-02 00:00:00"
+    },
+    {
+        "id_product"  : 3,
+        "id_user"     : 3,
+        "name"        : "La salud es lo primero",
+        "price"       : 30000,
+        "description" : "¿Quieres sentirte como un superhéroe todos los días? ¡Prueba algo saludable! Desde las frutas y verduras que te dan superpoderes hasta los ejercicios que te hacen sentir como un auténtico ninja, adoptar un estilo de vida saludable es como tener tu propio equipo de acción personal. ¡Ponte la capa de la buena salud y empieza a salvar el día!",
+        "image_url"   : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/54.svg",
+        "category" : "bienestar",
+        "date_add"    : "2024-01-03 00:00:00"
+    },   
+    {
+        "id_product"  : 4,
+        "id_user"     : 4,
+        "name"        : "Hecho a mano",
+        "price"       : 40000,
+        "description" : "¿Aburrido de lo ordinario? ¡Dale vida a tu vida con una artesanía! Ya sea que estés tejiendo suéteres de unicornio o tallando cucharas de madera con caras sonrientes, la artesanía es como una fiesta de creatividad donde tú eres el invitado de honor. ¡Haz algo con tus propias manos y prepárate para sorprenderte con tu propio talento!",
+        "image_url"   : "https://static.wikia.nocookie.net/espokemon/images/f/f3/Gurdurr.png",
+        "category" : "manualidades",
+        "date_add"    : "2024-01-04 00:00:00"
+    },
+    {
+        "id_product"  : 5,
+        "id_user"     : 1,
+        "name"        : "Otra plantita",
+        "price"       : 50000,
+        "description" : "La suculenta, también conocida como 'la artista del drama' del mundo de las plantas, es como el compañero de cuarto perfecto: siempre está ahí cuando la necesitas, nunca pide demasiado y, aunque puede que no hable, sus formas y colores expresivos hablan por sí mismos. Además, ¿quién necesita terapia cuando puedes simplemente regar una suculenta y verla florecer en tu ventana con su actitud zen?",
+        "image_url"   : "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+        "category" : "plantas",
+        "date_add"    : "2024-01-01 00:00:00"
+    }    
+]
